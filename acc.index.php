@@ -39,26 +39,32 @@ $conexion = conexion('savesemester', 'root', '');
 if (!$conexion) 
 {
 	die();
-}
-
-if($page=1)
+}else
 {
-   //Preparamos  la Query
+    //Preparamos  la Query
      $statement=$conexion->prepare('SELECT * FROM users_data WHERE id=:_id');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
      $statement->execute( array(':_id'=>$_SESSION['id']) );
 
      $result=$statement->fetch();
      //Debemos de ver si el arreglo es mayor a 0 de ser asi es que se lanzo la Query Bien y por consecuente si existe el correo en la base de datos
-     if($result>0)
-     {
-         /*Todo esta bien*/
-         printArray($result);
+    
+}
 
-     }else
-     {
-         // hicismos algo mal
-     }
+
+if($page==1)
+{
+$opciones=array();
+array_push($opciones,"Perfil publico");
+array_push($opciones,"Balance");
+array_push($opciones,"Servidor");    
+}
+if($page==2)
+{
+$opciones=array();
+array_push($opciones,"Cambiar Email");
+array_push($opciones,"Cambiar Password");
+array_push($opciones,"Cambiar Servidor");    
 }
 
 

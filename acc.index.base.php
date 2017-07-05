@@ -43,7 +43,14 @@
                 <div id="warpcontent">
                      
                    <div id="warpIz">
-
+                        <?php
+                        for ($i=0; $i < 3; $i++)
+                        { 
+                            echo'<div class="opciones">
+                            <a href="#"><p><strong>'.$opciones[$i].'</strong></p></a>
+                        </div>   ';
+                        }
+                        ?>
                    </div>
                    <div id="warpDr">
 
