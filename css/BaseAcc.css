@@ -75,3 +75,25 @@ display: flex;
 {
     text-decoration: underline;
 }
+
+#elementosemergentes
+{
+  position: absolute;
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+  background:rgba(115, 115, 115, 0.3);
+}
+body
+{
+    position: relative;
+}
+#MidScreen   /*No esta del todo bien pero funciona*/
+{
+    height: 33.3%;
+    width: 33.3%;
+    background: red;
+    margin: 0 auto;
+    margin-top: 10%;
+    
+}

@@ -1,4 +1,45 @@
 <?php
+
+if(isset($_POST['submit']))
+{
+    
+     header("refresh: 0; acc.index.php?page=2");
+    //Si se envio el formulario entonces
+    // vamos a guardarlo en una variable tipo post para que no sea privada
+   $user=$_POST[$namefromOld];
+   $password=$_POST[$namefromNew];
+     
+     //Tenemos algo pero no sabemos que es lo que tenemos... creo que es emomento de ver que es
+     //estara vacio ?
+     if(!empty($user))
+     {
+         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
+         $user=trim($user);
+         $user=filter_var($user,FILTER_SANITIZE_STRING);
+         if(!filter_var($user,FILTER_SANITIZE_STRING))
+         {
+             $errores.="Ingresa un correo valido <br\>";
+         }
+     
+     }else
+     {
+         $errores.="";
+     }
+    
+         if(!empty($password))
+     {
+         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
+         $password=trim($password);
+         $password=filter_var($password,FILTER_SANITIZE_STRING);
+     }else
+     {
+         $errores.=" Rellene todos los campos de el Formulario";
+     }
+}
+
+$errores="";
+$enviado="";
+$login=false;
 session_start();
 if(isset($_SESSION)) 
 {
@@ -82,7 +123,7 @@ array_push($Detalles,$result['rango']);
 }
 if($page==2)
 {
-    $ChangeLinks="Change.display.php";
+    $ChangeLinks="acc.index.php?page=2&change=";
      $Additionaltext='';
 //Account Settingss
 array_push($opciones,"Cambiar Email");
@@ -100,7 +141,35 @@ array_push($Detalles,$result['email']);
 array_push($Detalles,$result['horasjugadas']);
 array_push($Detalles,$result['rango']);   
 }
-
+if(isset($_GET['change']))
+{
+    if(empty($_GET['change']))
+    {
+        switch ($_GET['change'])
+         {
+            case 1:
+                $typeform="server";
+                $namefromOld='serverold';
+                $namefromNew='servernew';
+                break;
+            case 2:
+                $typeform="password";
+                $namefromOld='passold';
+                $namefromNew='passnew';
+                break;
+            case 3:
+               $typeform="email";
+                $namefromOld='emailold';
+                $namefromNew='emailnew';
+                break;
+            
+            default:
+                
+                break;
+        }
+    }
+}
+//Quiere decir que quiere cambiar alguno de sus datos
 
 require 'acc.index.base.php';
 ?>
