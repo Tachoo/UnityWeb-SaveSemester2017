@@ -1,0 +1,166 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: white;
+    background: black; /**/
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    vertical-align: middle;
+}
+li,a,p,h1,h2,h3,h4,dd
+{
+   text-decoration: none;
+   list-style-type: none;
+   color: white;
+}
+
+#warper
+{
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+#top , #bot
+{
+    display: flex;
+
+}
+
+.posfix
+{
+    width: 70%;
+    margin: 0 auto;
+    background: black;
+}
+#infoslogan
+{
+    width: 50%;
+    height: 100%;
+}
+#navbar
+{
+
+width: 50%;
+position: relative;
+display: flex;
+}
+
+#navbar li
+{
+
+   float: left;
+   width: 33.3%;
+}
+#navbar li a
+{
+    width: 100%;
+    height: 100%;
+}
+#navbar li a:hover
+{
+    border-bottom: 1px solid white;
+}
+#navbar li a:focus
+{
+    font-size: 18px;
+}
+#home
+{
+    background: blue;
+}
+#register
+{
+    background: green;
+}
+#login
+{
+    background: red;
+}
+/*Contenido*/
+#content
+{
+    display:block;
+}
+
+
+/*Footer*/
+
+#footer
+{
+    display: flex;
+    position: relative;
+}
+#support
+{
+    width: 33.3%;
+    float: left;
+    background: black;
+    height: 100px;
+}
+#ulfix
+{
+    height: 100%;
+}
+#internallinks
+{
+    width: 100%;
+
+}
+
+#internallinks li 
+{
+    width: 50%;
+
+}
+
+#semanario
+{
+    width: 33.3%;
+    float: right;    
+
+    height: 130px;
+
+}
+#socialmedia
+{
+    width: 33.3%;
+    float: left;    
+    height: 50px;
+}
+#socialimg
+{
+    height: 50px;
+    background: black;
+    display: flex;
+}
+.smedia
+{
+    width: 25px;
+    height: 25px;
+    margin: 25 auto;
+}
+.smedia figure
+{
+    width: 100%;
+    height: 100%;
+}
+.smedia figure img
+{
+    height: 100%;
+}
+
+#semanariowarp 
+{
+   font-size: 12px;
+   height: 100%;
+}

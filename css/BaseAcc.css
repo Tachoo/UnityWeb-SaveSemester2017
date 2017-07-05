@@ -1,0 +1,33 @@
+#Contenedor
+{
+    display: flex;
+}
+#Dinamic
+{
+    width: 50%;
+    float: right;
+    
+}
+#DinamicSection
+{
+    background: black;
+    display:flex;
+}
+
+#warpcontent
+{
+    width: 100%;
+    height: 800px;
+    background: white;
+}
+
+#warpIz
+{
+width: 30%;
+background: red;
+}
+warpDr
+{
+width: 70%;
+background: purple;
+}
