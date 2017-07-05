@@ -1,42 +1,5 @@
 <?php
 
-if(isset($_POST['submit']))
-{
-    
-     header("refresh: 0; acc.index.php?page=2");
-    //Si se envio el formulario entonces
-    // vamos a guardarlo en una variable tipo post para que no sea privada
-   $user=$_POST[$namefromOld];
-   $password=$_POST[$namefromNew];
-     
-     //Tenemos algo pero no sabemos que es lo que tenemos... creo que es emomento de ver que es
-     //estara vacio ?
-     if(!empty($user))
-     {
-         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
-         $user=trim($user);
-         $user=filter_var($user,FILTER_SANITIZE_STRING);
-         if(!filter_var($user,FILTER_SANITIZE_STRING))
-         {
-             $errores.="Ingresa un correo valido <br\>";
-         }
-     
-     }else
-     {
-         $errores.="";
-     }
-    
-         if(!empty($password))
-     {
-         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
-         $password=trim($password);
-         $password=filter_var($password,FILTER_SANITIZE_STRING);
-     }else
-     {
-         $errores.=" Rellene todos los campos de el Formulario";
-     }
-}
-
 $errores="";
 $enviado="";
 $login=false;
@@ -170,6 +133,54 @@ if(isset($_GET['change']))
     }
 }
 //Quiere decir que quiere cambiar alguno de sus datos
+if(isset($_POST['submit']))
+{
+    
+     header("refresh: 0; acc.index.php?page=2");
+    //Si se envio el formulario entonces
+    // vamos a guardarlo en una variable tipo post para que no sea privada
+   $old=$_POST[$namefromOld];
+   $new=$_POST[$namefromNew];
+     
+     //Tenemos algo pero no sabemos que es lo que tenemos... creo que es emomento de ver que es
+     //estara vacio ?
+     if(!empty($user))
+     {
+         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
+         $old=trim($user);
+         $old=filter_var($old,FILTER_SANITIZE_STRING);
+         if(!filter_var($old,FILTER_SANITIZE_STRING))
+         {
+             $errores.="Ingresa un correo valido <br\>";
+         }
+     
+     }else
+     {
+         $errores.="";
+     }
+    
+         if(!empty($new))
+     {
+         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
+         $new=trim($new);
+         $new=filter_var($new,FILTER_SANITIZE_STRING);
+     }else
+     {
+         $errores.=" Rellene todos los campos de el Formulario";
+     }
+}
+ if(!$errores)
+{
+     
+     //Preparamos  la Query
+     $statement=$conexion->prepare('UPDATE users_data SET :columna =:value WHERE users_data.id =:id');
+     //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
+     $statement->execute( array(':columna'=>$typeform,':value'=>$new,':id'=>$_SESSION['id']) );
+
+     $result=$statement->fetch(); 
+}
+
+
 
 require 'acc.index.base.php';
 ?>
