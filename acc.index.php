@@ -60,10 +60,12 @@ $Additionaltext='';
 if($page==1)
 {
     $Additionaltext='Show more...';
+    
+
 //Acount Profile
 array_push($opciones,"Perfil publico");
 array_push($opciones,"Balance");
-array_push($opciones,"Servidor");    
+array_push($opciones,"Archivements");    
 
 
 array_push($Labels,"Server");
@@ -80,6 +82,7 @@ array_push($Detalles,$result['rango']);
 }
 if($page==2)
 {
+    $ChangeLinks="Change.display.php";
      $Additionaltext='';
 //Account Settingss
 array_push($opciones,"Cambiar Email");

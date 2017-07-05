@@ -5,6 +5,9 @@
       <link rel="stylesheet" type="text/css" href="CSS/BaseAcc.css">
     </head>
     <body>
+        <div id="elementosemergentes">
+            
+        </div>
         <div id="warper">
              
              <div id="top">
@@ -47,7 +50,7 @@
                         for ($i=0; $i < 3; $i++)
                         { 
                             echo'<div class="opciones">
-                            <a href="#"><p><strong>'.$opciones[$i].'</strong></p></a>
+                            <a href="'.$ChangeLinks[$i].'"><p><strong>'.$opciones[$i].'</strong></p></a>
                         </div>   ';
                         }
                         ?>
