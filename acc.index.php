@@ -195,7 +195,10 @@ if(isset($_POST['submit']))
 
 }
  
-
+if(isset($_POST['cancel']))
+{
+    header("refresh: 2; url = acc.index.php?page=2");
+}
 
 
 require 'acc.index.base.php';

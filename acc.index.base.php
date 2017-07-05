@@ -22,7 +22,8 @@
                        <?php elseif($enviado):?>
                        <div class="alert success"><?php ob_start(); header("refresh: 2; url = acc.index.php?page=2"); echo $enviado; ob_end_flush(); ?></div>
                       <?php endif;?>
-                      <input type="submit" name="submit" class="submit" value="Change">
+                      <input type="submit" name="submit" class="submit" value="Change ">
+                      <input type="submit" name="cancel" class="submit" value="Cancel ">
                  </form>
                 </div>
                  </div>
