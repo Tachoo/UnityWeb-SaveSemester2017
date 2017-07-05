@@ -49,14 +49,18 @@ if (!$conexion)
 
      $result=$statement->fetch();
      //Debemos de ver si el arreglo es mayor a 0 de ser asi es que se lanzo la Query Bien y por consecuente si existe el correo en la base de datos
-    
-}
+
+    //
 $Labels=array();
 $opciones=array();
 $Detalles=array();
+$Additionaltext='';
+}
+
 if($page==1)
 {
-
+    $Additionaltext='Show more...';
+//Acount Profile
 array_push($opciones,"Perfil publico");
 array_push($opciones,"Balance");
 array_push($opciones,"Servidor");    
@@ -71,22 +75,25 @@ array_push($Detalles,$result['server']);
 array_push($Detalles,$result['horasjugadas']);
 array_push($Detalles,$result['rango']);   
 
+
+
 }
 if($page==2)
 {
-
+     $Additionaltext='';
+//Account Settingss
 array_push($opciones,"Cambiar Email");
 array_push($opciones,"Cambiar Password");
 array_push($opciones,"Cambiar Servidor");   
 
 
 
+array_push($Labels,"Email");
+array_push($Labels,"password");
 array_push($Labels,"Server");
-array_push($Labels,"HoursPlayed");
-array_push($Labels,"Rango");
 
 
-array_push($Detalles,$result['server']);
+array_push($Detalles,$result['email']);
 array_push($Detalles,$result['horasjugadas']);
 array_push($Detalles,$result['rango']);   
 }

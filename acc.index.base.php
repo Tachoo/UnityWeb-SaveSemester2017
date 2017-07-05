@@ -55,12 +55,12 @@
                    <div id="warpDr">
                         <?php
                         for ($i=0; $i <3; $i++) { 
-                            # code...
-                        }
-                        echo '<div id="contenido">
+                           echo '<div id="contenido">
                             <div id="FOne"><P>'.$Labels[$i].'</P></div>
-                            <div id="SOne"><P>'.$Detalles[$i].'</P><span style="width:10px;"></span><P class="showmore">[ <a href="#">Show more...</a>]</P></div>
+                            <div id="SOne"><P>'.$Detalles[$i].'</P><span style="width:10px;"></span><P class="showmore"> <a href="#">'.$Additionaltext.'</a></P></div>
                         </div>';
+                        }
+                        
                         ?>
                    </div>
 
