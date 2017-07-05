@@ -1,7 +1,7 @@
 <div id="formcontainer">
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="Formulario">
+            <form action="index.php?page=3" method="POST" id="Formulario">
                  <!--Email-->
-                 <input type="text" class="form-control" name="email" placeholder="Email" value="<?php if(!$enviado && isset($user)){echo $user;} ?>">
+                 <input type="text" class="form-control" name="email" placeholder="Email" value="">
                  <!--Password-->
                  <input type="password" class="form-control" name="password" placeholder="password" value="">
                  <!--Elementos Dinamicos-->

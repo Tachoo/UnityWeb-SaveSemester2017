@@ -10,14 +10,14 @@ if(isset($_SESSION))
 {
     if(empty($_SESSION))
     {
-        header("refresh: 0; url = index.php");
+        header("refresh: 0; url = index.php?page=1");
     }
     
 }
 if(isset($_GET["logout"]))
 {   
     session_destroy();
-    header("refresh: 0; url = index.php");
+    header("refresh: 0; url = index.php?page=3");
 }
 if(isset($_GET['page']))
 {
@@ -31,7 +31,7 @@ if(isset($_GET['page']))
             break;
         case 3:
         session_destroy();
-        header("refresh: 0; url = index.php?logout=ACCOut");
+        header("refresh: 0; url = acc.index.php?logout=ACCOut");
             break;
         default:
               $page=1;
@@ -49,7 +49,7 @@ if (!$conexion)
 }else
 {
     //Preparamos  la Query
-     $statement=$conexion->prepare('SELECT server,horasdejuego,rango,email,password FROM users_data WHERE id=:_id');
+     $statement=$conexion->prepare('SELECT * FROM users_data WHERE id=:_id');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
      $statement->execute( array(':_id'=>$_SESSION['id']) );
 
@@ -103,8 +103,8 @@ array_push($Labels,"Server");
 
 
 array_push($Detalles,$result['email']);
-array_push($Detalles,$result['horasjugadas']);
-array_push($Detalles,$result['rango']);   
+array_push($Detalles,$result['password']);
+array_push($Detalles,$result['server']);   
 }
 if(isset($_GET['change']))
 {
@@ -194,7 +194,7 @@ if(isset($_POST['submit']))
      if(!empty($enviado))
      {
          //mandamos el correo
-         mail
+         
 
      }
 
