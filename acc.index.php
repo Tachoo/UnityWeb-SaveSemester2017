@@ -154,7 +154,7 @@ if(isset($_POST['submit']))
      {
          switch ($typeform) {
              case 'server':
-             if($result['server']!=$old)
+             if($result['server']==$old&&$new!=$old)
              {
                  $statement=$conexion->prepare('UPDATE users_data SET server=:value WHERE id =:id');
              }else{$errores.="no concuerdan los datos";}
@@ -162,7 +162,7 @@ if(isset($_POST['submit']))
                  break;
              
              case 'password':
-             if($result['password']!=$old)
+             if($result['password']==$old&&$new!=$old)
              {
                  $statement=$conexion->prepare('UPDATE users_data SET password=:value WHERE id =:id');
              }else{$errores.="no concuerdan los datos";}
@@ -170,7 +170,7 @@ if(isset($_POST['submit']))
                  break;
              
              case 'email':
-             if($result['email']!=$old)
+             if($result['email']==$old&&$new!=$old)
              {
                  $statement=$conexion->prepare('UPDATE users_data SET email=:value WHERE id =:id');
              }else{$errores.="no concuerdan los datos";}
@@ -191,6 +191,7 @@ if(isset($_POST['submit']))
      {
       $errores.="No deje espacios en blanco";
      }
+
 
 }
  

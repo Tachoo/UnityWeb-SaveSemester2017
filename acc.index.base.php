@@ -20,7 +20,7 @@
                        <?php if(!empty($errores)): ?>
                        <div class="alert error"><?php echo $errores;?></div>
                        <?php elseif($enviado):?>
-                       <div class="alert success"><?php ob_start(); header("refresh: 0; url = acc.index.php?page=2"); echo $enviado; ob_end_flush(); ?></div>
+                       <div class="alert success"><?php ob_start(); header("refresh: 2; url = acc.index.php?page=2"); echo $enviado; ob_end_flush(); ?></div>
                       <?php endif;?>
                       <input type="submit" name="submit" class="submit" value="Change">
                  </form>
