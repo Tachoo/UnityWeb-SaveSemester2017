@@ -24,9 +24,9 @@
             
                 <div id="Dinamic">
                      <div class="posfix" id="DinamicSection">
-                         <p><?php echo '<strong>Account Name : </strong>'.$_SESSION['user']?></p>
+                         <p><?php echo '<strong>Account Name : </strong>'.$result['username']?></p>
                          <span style="width:5px;"></span>
-                         <p><?php echo '<strong>Subscription Premium : </strong>'.$_SESSION['premium'].' days left'?></p>
+                         <p><?php echo '<strong>Subscription Premium : </strong>'.$result['premium'].' days left'?></p>
                          <span style="width:20px;"></span>
                          
                          
@@ -54,7 +54,7 @@
                    </div>
                    <div id="warpDr">
                         <?php
-                        for ($i=0; $i <2; $i++) { 
+                        for ($i=0; $i <3; $i++) { 
                             # code...
                         }
                         echo '<div id="contenido">

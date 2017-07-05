@@ -38,11 +38,11 @@
                  <div class="alert error"><?php echo $errores;?></div>
                  <?php elseif($enviado):?>
                  <?php
-                        session_start();
+                       
                         $_SESSION['id'] = $result['id'];
                         
                 ?>
-                 <div class="alert success"><?php ob_start();  header("refresh: 3; url = acc.index.php"); echo $enviado; ob_end_flush(); ?></div>
+                 <div class="alert success"><?php ob_start();  header("refresh: 3; url = acc.index.php?page=1"); echo $enviado; ob_end_flush(); ?></div>
                 <?php endif;?>
                  <input type="submit" name="submit" class="submit" value="Acceder">
             </form>

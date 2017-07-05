@@ -1,6 +1,6 @@
 <?php
 
-
+ session_start();
 require 'funciones.php';
 //Realizamos la conexion a la base de datos
 $conexion = conexion('savesemester', 'root', '');
@@ -56,19 +56,21 @@ if(isset($_POST['submit']))
 /*Si no encuentra errores quiere decir que todo esta bien y listo para  hacer la query*/
     if(!$errores)
      {
-     echo"ok";
+     
      //Preparamos  la Query
-     $statement=$conexion->prepare('SELECT id FROM users_data WHERE email=:_username OR username=:_username');
+     $statement=$conexion->prepare('SELECT id,username FROM users_data WHERE password=:_password AND email=:_username OR username=:_username');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
-     $statement->execute( array(':_username'=>$user) );
+     $statement->execute( array(':_username'=>$user,':_password'=>$password) );
 
      $result=$statement->fetch();
+     $name=$result['username'];
+     
      //Debemos de ver si el arreglo es mayor a 0 de ser asi es que se lanzo la Query Bien y por consecuente si existe el correo en la base de datos
 
      if($result>0)
      {
-     $enviado="Bienvenido De Nuevo Maestro.".$name; 
-     $login==true;
+      $enviado="Bienvenido De Nuevo Maestro.".$name; 
+      $login==true;
 
      }else
      {
