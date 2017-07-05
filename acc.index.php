@@ -49,7 +49,7 @@ if (!$conexion)
 }else
 {
     //Preparamos  la Query
-     $statement=$conexion->prepare('SELECT * FROM users_data WHERE id=:_id');
+     $statement=$conexion->prepare('SELECT server,horasdejuego,rango,email,password FROM users_data WHERE id=:_id');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
      $statement->execute( array(':_id'=>$_SESSION['id']) );
 
@@ -184,12 +184,18 @@ if(isset($_POST['submit']))
     
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
      $statement->execute( array(':value'=>$new,':id'=>$_SESSION['id']) );
-       $enviado.="Actualizacion de datos exitosa";
+       $enviado.="Actualizacion de datos exitosa correo de confirmacion enviado";
         
    
      }else
      {
       $errores.="No deje espacios en blanco";
+     }
+     if(!empty($enviado))
+     {
+         //mandamos el correo
+         mail
+
      }
 
 
@@ -197,7 +203,7 @@ if(isset($_POST['submit']))
  
 if(isset($_POST['cancel']))
 {
-    header("refresh: 2; url = acc.index.php?page=2");
+    header("refresh: 0; url = acc.index.php?page=2");
 }
 
 
