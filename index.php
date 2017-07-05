@@ -3,7 +3,7 @@
  session_start();
 require 'funciones.php';
 //Realizamos la conexion a la base de datos
-$conexion = conexion('savesemester', 'root', '');
+$conexion = conexion('savesemester', 'u720179037_savea ', '');
 //Solo si algo salio mal hay que cortar la conexion;
 if (!$conexion) 
 {

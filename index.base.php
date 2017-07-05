@@ -2,7 +2,7 @@
     <head>
         
       <link rel="stylesheet" type="text/css" href="css/BaseStruct.css">
-      <link rel="stylesheet" type="text/css" href="CSS/Register.css">
+      <link rel="stylesheet" type="text/css" href="css/Register.css">
     </head>
     <body>
         <div id="warper">

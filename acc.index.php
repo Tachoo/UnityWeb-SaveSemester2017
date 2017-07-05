@@ -41,7 +41,7 @@ if(isset($_GET['page']))
 
 require 'funciones.php';
 
-$conexion = conexion('savesemester', 'root', '');
+$conexion = conexion('u720179037_saves', 'u720179037_savea ', 'Ninoyuki200');
 
 if (!$conexion) 
 {
