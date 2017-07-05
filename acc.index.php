@@ -1,5 +1,7 @@
 <?php
-
+$old='';
+$new='';
+$typeform="";
 $errores="";
 $enviado="";
 $login=false;
@@ -64,7 +66,7 @@ $Additionaltext='';
 if($page==1)
 {
     $Additionaltext='Show more...';
-    
+    $ChangeLinks='#';
 
 //Acount Profile
 array_push($opciones,"Perfil publico");
@@ -106,22 +108,25 @@ array_push($Detalles,$result['rango']);
 }
 if(isset($_GET['change']))
 {
-    if(empty($_GET['change']))
+    if(!empty($_GET['change']))
     {
         switch ($_GET['change'])
          {
             case 1:
-                $typeform="server";
+               $_SESSION['change']="email"; 
+               
                 $namefromOld='serverold';
                 $namefromNew='servernew';
                 break;
             case 2:
-                $typeform="password";
+                $_SESSION['change']="password";
+                
                 $namefromOld='passold';
                 $namefromNew='passnew';
                 break;
             case 3:
-               $typeform="email";
+               
+              $_SESSION['change']="server";
                 $namefromOld='emailold';
                 $namefromNew='emailnew';
                 break;
@@ -132,53 +137,63 @@ if(isset($_GET['change']))
         }
     }
 }
+
 //Quiere decir que quiere cambiar alguno de sus datos
 if(isset($_POST['submit']))
 {
-    
-     header("refresh: 0; acc.index.php?page=2");
+ //echo $_SESSION['change'];    
+     
     //Si se envio el formulario entonces
     // vamos a guardarlo en una variable tipo post para que no sea privada
-   $old=$_POST[$namefromOld];
-   $new=$_POST[$namefromNew];
+   $old=$_POST['old'];
+   $new=$_POST['new'];
+   $typeform=$_SESSION['change']; 
      
-     //Tenemos algo pero no sabemos que es lo que tenemos... creo que es emomento de ver que es
-     //estara vacio ?
-     if(!empty($user))
+      //Preparamos  la Query
+     if(!empty($new)&&!empty($old))
      {
-         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
-         $old=trim($user);
-         $old=filter_var($old,FILTER_SANITIZE_STRING);
-         if(!filter_var($old,FILTER_SANITIZE_STRING))
-         {
-             $errores.="Ingresa un correo valido <br\>";
+         switch ($typeform) {
+             case 'server':
+             if($result['server']!=$old)
+             {
+                 $statement=$conexion->prepare('UPDATE users_data SET server=:value WHERE id =:id');
+             }else{$errores.="no concuerdan los datos";}
+                 
+                 break;
+             
+             case 'password':
+             if($result['password']!=$old)
+             {
+                 $statement=$conexion->prepare('UPDATE users_data SET password=:value WHERE id =:id');
+             }else{$errores.="no concuerdan los datos";}
+                 
+                 break;
+             
+             case 'email':
+             if($result['email']!=$old)
+             {
+                 $statement=$conexion->prepare('UPDATE users_data SET email=:value WHERE id =:id');
+             }else{$errores.="no concuerdan los datos";}
+                 
+                 break;
+             
+             default:
+                 
+                 break;
          }
-     
-     }else
-     {
-         $errores.="";
-     }
     
-         if(!empty($new))
-     {
-         //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
-         $new=trim($new);
-         $new=filter_var($new,FILTER_SANITIZE_STRING);
+     //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
+     $statement->execute( array(':value'=>$new,':id'=>$_SESSION['id']) );
+       $enviado.="Actualizacion de datos exitosa";
+        
+   
      }else
      {
-         $errores.=" Rellene todos los campos de el Formulario";
+      $errores.="No deje espacios en blanco";
      }
-}
- if(!$errores)
-{
-     
-     //Preparamos  la Query
-     $statement=$conexion->prepare('UPDATE users_data SET :columna =:value WHERE users_data.id =:id');
-     //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
-     $statement->execute( array(':columna'=>$typeform,':value'=>$new,':id'=>$_SESSION['id']) );
 
-     $result=$statement->fetch(); 
 }
+ 
 
 
 
