@@ -26,28 +26,31 @@
              <!---->
 
              <div class="posfix" id="content">
-                        
-            <div id="formcontainer">
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="Formulario">
-                 <!--Email-->
-                 <input type="text" class="form-control" name="email" placeholder="Email" value="<?php if(!$enviado && isset($user)){echo $user;} ?>">
-                 <!--Password-->
-                 <input type="password" class="form-control" name="password" placeholder="password" value="">
-                 <!--Elementos Dinamicos-->
-                 <?php if(!empty($errores)): ?>
-                 <div class="alert error"><?php echo $errores;?></div>
-                 <?php elseif($enviado):?>
-                 <?php
-                       
-                        $_SESSION['id'] = $result['id'];
-                        
-                ?>
-                 <div class="alert success"><?php ob_start();  header("refresh: 3; url = acc.index.php?page=1"); echo $enviado; ob_end_flush(); ?></div>
-                <?php endif;?>
-                 <input type="submit" name="submit" class="submit" value="Acceder">
-            </form>
-            </div>
-
+<?php
+        if(isset($_GET['page']))
+          {
+              if(!empty($_GET['page']))
+              {
+                  switch ($_GET['page']) {
+                      case 1:
+                      //home
+                      require 'index.home.php';
+                          break;
+                      case 2:
+                      //register
+                      require 'index.register.php';
+                          break;
+                      case 3:
+                      require 'index.login.php';
+                      //login                     
+                break;
+                      default:
+                          # code...
+                          break;
+                  }
+              }
+          }            
+?>       
              </div>
              <!---->
              <div id="bot">
