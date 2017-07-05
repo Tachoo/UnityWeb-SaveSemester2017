@@ -1,15 +1,13 @@
 <?php
 
 
-//Punto de Acceso
-try
-{                   /*         10.1.2.121        u720179037_3exam u720179037_ana  SergioAnastacio20*/
-                    /*         127.0.0.1        db_web_4_test        root                         */
- $conexion=new PDO('mysql:host=127.0.0.1;dbname=savesemester','root','');
-
-}catch(PDOException $e)
+require 'funciones.php';
+//Realizamos la conexion a la base de datos
+$conexion = conexion('savesemester', 'root', '');
+//Solo si algo salio mal hay que cortar la conexion;
+if (!$conexion) 
 {
-echo "Error:".$e->getMessage();
+	die();
 }
 
 $id="";
@@ -60,7 +58,7 @@ if(isset($_POST['submit']))
      {
      echo"ok";
      //Preparamos  la Query
-     $statement=$conexion->prepare('SELECT id,username,email,premium FROM users_data WHERE email=:_username OR username=:_username');
+     $statement=$conexion->prepare('SELECT id FROM users_data WHERE email=:_username OR username=:_username');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
      $statement->execute( array(':_username'=>$user) );
 

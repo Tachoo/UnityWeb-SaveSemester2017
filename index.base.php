@@ -40,12 +40,7 @@
                  <?php
                         session_start();
                         $_SESSION['id'] = $result['id'];
-                        $_SESSION['user'] = $result['username'];
-                        $_SESSION['email'] = $result['email'];
-                        $_SESSION['premium'] = $result['premium']; 
-                        echo "<pre>";
-                        print_r($_SESSION);
-                        echo "</pre>";
+                        
                 ?>
                  <div class="alert success"><?php ob_start();  header("refresh: 3; url = acc.index.php"); echo $enviado; ob_end_flush(); ?></div>
                 <?php endif;?>

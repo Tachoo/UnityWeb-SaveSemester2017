@@ -24,10 +24,12 @@
 #warpIz
 {
 width: 30%;
+height: 100%;
 background: red;
 }
 warpDr
 {
 width: 70%;
+height: 100%;
 background: purple;
 }

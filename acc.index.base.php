@@ -17,9 +17,9 @@
   <!--Menu-->
             <div id="Contenedor">
                  <ul id="navbar">
-                  <li id="home"><a href="#"> Home</a></li><!--Home-->
-                  <li id="register"><a href="#"> Register</a></li><!--Register-->
-                  <li id="login"><a href="#" >LogIn</a></li><!--LogIn-->
+                  <li id="home"><a href="acc.index.php?page=1">Acount profile</a></li><!--Home-->
+                  <li id="register"><a href="acc.index.php?page=2">Acount Settings</a></li><!--Register-->
+                  <li id="login"><a href="acc.index.php?page=3" >LogOut</a></li><!--LogIn-->
                 </ul>
             
                 <div id="Dinamic">
@@ -28,8 +28,7 @@
                          <span style="width:5px;"></span>
                          <p><?php echo '<strong>Premium : </strong>'.$_SESSION['premium']?></p>
                          <span style="width:20px;"></span>
-                         <span style="width:5px; border-left:2px solid #fff;"></span>
-                         <a href="acc.index.php?logout=kjsdjkf">logout</a>
+                         
                          
                     </div>
                 </div>
@@ -47,7 +46,7 @@
 
                    </div>
                    <div id="warpDr">
-                       
+
                    </div>
 
 
