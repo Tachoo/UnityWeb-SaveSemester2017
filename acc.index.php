@@ -41,11 +41,11 @@ if(isset($_GET['page']))
 
 require 'funciones.php';
 
-$conexion = conexion('u720179037_saves', 'u720179037_savea ', 'Ninoyuki200');
+$conexion = conexion('u720179037_saves', 'u720179037_savea', 'yYjaa9iVQ8OD');
 
 if (!$conexion) 
 {
-	//die();
+	die();
 }else
 {
     //Preparamos  la Query

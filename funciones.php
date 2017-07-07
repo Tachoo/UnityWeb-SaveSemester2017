@@ -1,9 +1,15 @@
 <?php
 function conexion($tabla, $usuario, $pass){
 	try {
-		$conexion = new PDO("10.1.2.121;dbname=$tabla", $usuario, $pass);
+		// Debemos de especificar el tipo de base de datos seguido de  la direcion de la base de datos
+		// separamos por un ; y seguido especificamos la  tabla con la que vamos a trabjar
+		// en la segunda y tercer espacio  sera la acreditacion  (Usuario , PASS);
+		$conexion = new PDO('mysql:host=mysql.hostinger.mx;dbname='.$tabla.'', $usuario, $pass);
 		return $conexion;
-	} catch (PDOException $e) {
+		
+	} catch (PDOException $e)
+	{
+		echo 'Connection failed: ' . $e->getMessage();
 		return false;
 	}
 }

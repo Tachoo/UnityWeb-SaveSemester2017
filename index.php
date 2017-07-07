@@ -3,7 +3,7 @@
  session_start();
 require 'funciones.php';
 //Realizamos la conexion a la base de datos
-$conexion = conexion('u720179037_saves', 'u720179037_savesa ', 'PfHZOri2h9Ic');
+$conexion = conexion('u720179037_saves', 'u720179037_savea', 'yYjaa9iVQ8OD');
 //Solo si algo salio mal hay que cortar la conexion;
 if (!$conexion) 
 {
