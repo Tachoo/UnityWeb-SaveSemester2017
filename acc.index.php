@@ -152,31 +152,50 @@ if(isset($_POST['submit']))
       //Preparamos  la Query
      if(!empty($new)&&!empty($old))
      {
-         switch ($typeform) {
+         switch ($typeform)
+          {
+             //caso nuevo
              case 'server':
              if($result['server']==$old&&$new!=$old)
              {
-                 $statement=$conexion->prepare('UPDATE users_data SET server=:value WHERE id =:id');
-             }else{$errores.="no concuerdan los datos";}
-                 
+
+                $statement=$conexion->prepare('UPDATE users_data SET server=:value WHERE id =:id');
+             }
+             else
+             {
+                 $errores.="no concuerdan los datos";
+             }
+
                  break;
-             
+             // caso nuevo
              case 'password':
              if($result['password']==$old&&$new!=$old)
              {
-                 $statement=$conexion->prepare('UPDATE users_data SET password=:value WHERE id =:id');
-             }else{$errores.="no concuerdan los datos";}
-                 
+
+                $statement=$conexion->prepare('UPDATE users_data SET password=:value WHERE id =:id');
+             }
+             else
+             {
+                 $errores.="no concuerdan los datos";
+             }
+
                  break;
-             
+             // caso nuevo
              case 'email':
              if($result['email']==$old&&$new!=$old)
              {
-                 $statement=$conexion->prepare('UPDATE users_data SET email=:value WHERE id =:id');
-             }else{$errores.="no concuerdan los datos";}
-                 
-                 break;
+
+                $statement=$conexion->prepare('UPDATE users_data SET email=:value WHERE id =:id');
+             }
+             else
+
+
+             {
+              $errores.="no concuerdan los datos";
+             }
+              break;
              
+             //caso nuevo
              default:
                  
                  break;
@@ -191,13 +210,7 @@ if(isset($_POST['submit']))
      {
       $errores.="No deje espacios en blanco";
      }
-     if(!empty($enviado))
-     {
-         //mandamos el correo
-         
-
-     }
-
+//
 
 }
  

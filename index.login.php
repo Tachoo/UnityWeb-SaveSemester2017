@@ -7,6 +7,8 @@
                  <!--Elementos Dinamicos-->
                  <?php if(!empty($errores)): ?>
                  <div class="alert error"><?php echo $errores;?></div>
+                 <?php elseif($confirm):?>
+                 <div class="alert success"><?php echo $confirm;  ?></div>
                  <?php elseif($enviado):?>
                  <?php
                        

@@ -17,6 +17,7 @@ $name="";
 $errores="";
 $enviado="";
 $login=false;
+$confirm="";
 
 
 
@@ -89,23 +90,37 @@ if(!empty($_POST['register']))
      $statement->execute(array(':username'=>$username,':password'=>$password,':email'=>$email,':server'=>$server,':code'=>$codigo));
            $result=$statement->fetch();
           
-           $subject= $username."pleace confirm  you email";
-           $mesagge=
-           "
+           $subject= $username."Pleace confirm  you email";
+           $mesagge='           
            Confirm You Email
            Click the link below to verify you account
-           http://www.tachoo.xyz/confirm.php?username=$username&code=$codigo
-           ";
-            echo $mesagge;
-          //mail($email,$subject,$mesagge,"From: DoNotRePly@tachoo.xyz");
+           http://www.tachoo.xyz/confirm.php?username='.$username.'&code='.$codigo;
+           
+          mail($email,$subject,$mesagge,"From: DoNotRePly@tachoo.xyz");
 
-          //$enviado.="Confirm Email pleace";
+          $enviado.="Check your Email for validation url";
      
      }
 
 }
 
 }
+//
+//verificar si ya fue enlazada la cuenta
+//
+if(isset($_GET['validate']))
+{
+    if(!empty($_GET['validate']))
+    {
+      if($_GET['validate']!=0)
+      {
+         $confirm.="Correo validado";
+
+      }
+    }
+}
+
+//log in
 
 if(isset($_POST['login']))
 {
@@ -150,7 +165,7 @@ if(isset($_POST['login']))
      {
      
      //Preparamos  la Query
-     $statement=$conexion->prepare('SELECT id,username FROM users_data WHERE password=:_password AND email=:_username OR username=:_username');
+     $statement=$conexion->prepare('SELECT id,username,validate FROM users_data WHERE password=:_password AND email=:_username OR username=:_username');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
      $statement->execute( array(':_username'=>$username,':_password'=>$password) );
 
@@ -159,7 +174,7 @@ if(isset($_POST['login']))
      
      //Debemos de ver si el arreglo es mayor a 0 de ser asi es que se lanzo la Query Bien y por consecuente si existe el correo en la base de datos
 
-     if($result>0)
+     if($result['validate']==1)
      {
       $enviado="Bienvenido De Nuevo Maestro.".$name; 
       $login==true;
