@@ -18,7 +18,7 @@ $errores="";
 $enviado="";
 $login=false;
 $confirm="";
-
+$validate;
 
 
 //Primero veo si  la variable en post de submit existe 
@@ -137,12 +137,15 @@ if(isset($_POST['login']))
      if(!empty($username))
      {
          //Pues ya sabemos que no esta vacio  es momento de limpear lo que tenga adentro
+         $_username=trim($username);
+         $_username=filter_var($username,FILTER_SANITIZE_STRING);
+
          $username=trim($username);
          $username=filter_var($username,FILTER_SANITIZE_EMAIL);
-         if(!filter_var($username,FILTER_VALIDATE_EMAIL))
-         {
-             $errores.="Ingresa un correo valido <br\>";
-         }
+        //  if(!filter_var($username,FILTER_VALIDATE_EMAIL))
+        //  {
+        //      $errores.="Ingresa un correo valido <br\>";
+        //  }
      
      }else
      {
@@ -163,18 +166,28 @@ if(isset($_POST['login']))
 /*Si no encuentra errores quiere decir que todo esta bien y listo para  hacer la query*/
     if(!$errores)
      {
-     
-     //Preparamos  la Query
-     $statement=$conexion->prepare('SELECT id,username,validate FROM users_data WHERE password=:_password AND email=:_username OR username=:_username');
+     /*CHecamos si la cuenta ya ha fue validada*/
+     $statement=$conexion->prepare('SELECT validate FROM users_data WHERE email=:username OR username=:_username');
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
-     $statement->execute( array(':_username'=>$username,':_password'=>$password) );
+     $statement->execute( array(':username'=>$username,':_username'=>$_username) );
+    $result=$statement->fetch();
+     $validate=$result['validate'];
+     /*Ahora solo debemos de sacar el valor de validate*/
+     if($validate!=0)
+     {
+        /*Ahora debemos de ver si las credenciales son correctas*/
+
+     //Preparamos  la Query
+     $statement=$conexion->prepare('SELECT id,username FROM users_data WHERE password=:_password AND email=:username OR username=:_username');
+     //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
+     $statement->execute( array(':username'=>$username,':_username'=>$_username,':_password'=>$password) );
 
      $result=$statement->fetch();
      $name=$result['username'];
      
      //Debemos de ver si el arreglo es mayor a 0 de ser asi es que se lanzo la Query Bien y por consecuente si existe el correo en la base de datos
 
-     if($result['validate']==1)
+     if($result>0)
      {
       $enviado="Bienvenido De Nuevo Maestro.".$name; 
       $login==true;
@@ -183,6 +196,13 @@ if(isset($_POST['login']))
      {
          $errores.="<br> User/password incorrect";
      }
+
+     }else
+     {
+          $errores.="<br> Falta validad su correo electronico";
+     }
+
+     
 
 
      }

@@ -3,8 +3,8 @@
 <html>
     <head>
         
-      <link rel="stylesheet" type="text/css" href="css/BaseStruct.css">
-      <link rel="stylesheet" type="text/css" href="css/Register.css">
+      <link rel="stylesheet" type="text/css" href="CSS/BaseStruct.css">
+      <link rel="stylesheet" type="text/css" href="CSS/Register.css">
     </head>
     <body>
         <div id="warper">
@@ -14,13 +14,13 @@
              <div class="posfix" id="nav">
   
              <div class="infoslogan">
-                 <h1>SaveSemesterRPG2017</h1>
+                 <a href="index.php?page=1"><h1>SaveSemesterRPG2017</h1></a>
              </div>
   <!--Menu-->
              <ul id="navbar">
-                 <li id="home"><a href="#"> Home</a></li><!--Home-->
-                 <li id="register"><a href="#"> Register</a></li><!--Register-->
-                 <li id="login"><a href="#" >LogIn</a></li><!--LogIn-->
+                 <li id="home"><a href="index.php?page=1"> Home</a></li><!--Home-->
+                 <li id="register"><a href="index.php?page=2"> Register</a></li><!--Register-->
+                 <li id="login"><a href="index.php?page=3" >LogIn</a></li><!--LogIn-->
              </ul>
 
              </div>
@@ -47,7 +47,7 @@
                       //login                     
                 break;
                       default:
-                          # code...
+                          require 'index.home.php';
                           break;
                   }
               }

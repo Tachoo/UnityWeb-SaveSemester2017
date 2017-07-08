@@ -1,7 +1,7 @@
 <html>
     <head>
-      <link rel="stylesheet" type="text/css" href="css/Register.css">  
-      <link rel="stylesheet" type="text/css" href="css/BaseStruct.css">
+      <link rel="stylesheet" type="text/css" href="CSS/Register.css">  
+      <link rel="stylesheet" type="text/css" href="CSS/BaseStruct.css">
       <link rel="stylesheet" type="text/css" href="CSS/BaseAcc.css">
     </head>
     <body>
@@ -49,7 +49,7 @@
                      <div class="posfix" id="DinamicSection">
                          <p><?php echo '<strong>Account Name : </strong>'.$result['username']?></p>
                          <span style="width:5px;"></span>
-                         <p><?php echo '<strong>Subscription Premium : </strong>'.$result['premium'].' days left'?></p>
+                         <p><?php echo '<strong>Premium : </strong>'.$result['premium'].' days left'?></p>
                          <span style="width:20px;"></span>
                          
                          

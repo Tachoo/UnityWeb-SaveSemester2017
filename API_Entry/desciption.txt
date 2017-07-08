@@ -1,0 +1,13 @@
+Script que originalmente su propocito es proporcionar infromacion desde la base de datos
+Debe de ser modular para hacer Querys de cualquier cosa  y su ejecucion debe de ser un arreglo asociado
+
+ $statement=$conn->Query($Query);
+ $statement->execute($Array);
+s
+Aun que en unity la manera que se comunica es por HTTP_REQUEST Siendo un formulario
+Deberia de pensar en hacerlo modular para cada uno de los requerimientos del juego:
+
+(Juego en local despues en online)
+(Diagramar Lapiz y papel del lado del juego como de el lado de la base de datos)
+
+ 
