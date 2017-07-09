@@ -20,4 +20,16 @@ function printArray($var)
 	print_r($var);
 	echo"</pre>";
 }
+
+function PrintToUnity($var)
+{
+ foreach($result as $r)
+  {
+            echo $r['id'],"\n";
+        }
+ }
+	   
+   
+  
+}
 ?>

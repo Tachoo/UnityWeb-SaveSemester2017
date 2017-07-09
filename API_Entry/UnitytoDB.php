@@ -9,6 +9,7 @@ if(isset($_POST['user']))
     if(!empty($_POST['user']))
     {
         $Usuario=$_POST['user'];
+        $_Usuario=$Usuario;
     }
     else
     {
@@ -32,10 +33,16 @@ if(isset($_POST['pass']))
 if(!empty($Usuario)&&!empty($password))
 {
 
-$statement=$conexion->prepare('SELECT * FROM users_data WHERE(password=:_password)AND(email:_email OR username:_username)');
-$statement->execute( array(':_password'=>$password,':_email'=>$Usuario,':_username'=>$Usuario) );
-$result=$statement->fetchall();
-printArray($result);
+$statement=$conexion->prepare('SELECT id FROM users_data WHERE password=:_password AND email=:_email OR username=:_username');
+$statement->execute( array(':_password'=>$password,':_email'=>$Usuario,':_username'=>$_Usuario) );
+$statement->setFetchMode(PDO::FETCH_ASSOC);
+$result=$statement->fetchAll();
+
+foreach($result as $r)
+  {
+      //Debere de conocer cada columna para imprimirla por separado dandole una estructura;
+            echo $r['id'],";";
+  }
 
 }
 else

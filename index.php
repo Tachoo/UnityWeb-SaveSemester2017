@@ -18,12 +18,18 @@ $errores="";
 $enviado="";
 $login=false;
 $confirm="";
-$validate;
+//Solo para el registro que funcione correctamente sin que se repita el usuario ni el email.
+ // no queremos que existan multiples instancias de correo o de usuario. 
+$validate_user="";
+$validate_email="";
+
 
 
 //Primero veo si  la variable en post de submit existe 
 // digamos que es para validar desde este mismo php los datos antes de enviar a otro php
 
+
+/*TO DO  : Limitar el numero de personas que tengan el mismo nombre a 1 (Solo uno puede llamarse asi )*/
 if(isset($_POST['register']))
 {
 
@@ -42,15 +48,19 @@ if(!empty($_POST['register']))
      //estara vacio ?
      if(!isset($politicas))
      {
+         
        if(!empty($username)&&!empty($email)&&!empty($password)&&!empty($server))
        {
+         
+         
+         
          //email
          $email=trim($email);
          $email=filter_var($email,FILTER_SANITIZE_EMAIL);
 
          if(!filter_var($email,FILTER_VALIDATE_EMAIL))
          {
-             $errores.="Ingresa un correo valido <br\>";
+             $errores.="<br> Ingresa un correo valido ";
          }else
          {
              //ya que tenemos  limpio deberiamos de  rellenar los restantes
@@ -61,7 +71,36 @@ if(!empty($_POST['register']))
          $password=trim($password);
          $password=filter_var($password,FILTER_SANITIZE_STRING);
          
-         $codigo=rand();
+        
+          
+          /*Checkar que el nombre no este siendo usado*/
+         $statement=$conexion->prepare('SELECT username FROM users_data WHERE username=:_username');          
+         $statement->execute( array(':_username'=>$username) );
+         $result=$statement->fetch();
+         if($result>0)
+         {
+           //mandamos a llamar la variable de erorres
+           $validate_user=$username;
+           $errores.="<br> El nombre de usuario: ".$validate_user." ya ha sido vinculada a una cuenta existente lo sentimos :C";
+           
+         }
+
+         /*Ahora veamos si el correo es el mismo.  no queremos que existan dos correos iguales o si ? ????. */
+          /*Checkar que el email no este siendo usado*/
+         $statement=$conexion->prepare('SELECT email FROM users_data WHERE email=:_email');          
+         $statement->execute( array(':_email'=>$email) );
+         $result=$statement->fetch();
+         if($result>0)
+         {
+           //mandamos a llamar la variable de erorres
+            $validate_user=$email;
+           $errores.="<br> La cuenta de correo ya ha sido vinculada a una cuenta existente lo sentimos :C";
+         }
+
+
+
+
+//Seguimos con el flujo de datos;
 
          }
          
@@ -83,7 +122,9 @@ if(!empty($_POST['register']))
 /*Si no encuentra errores quiere decir que todo esta bien y listo para  hacer la query*/
     if(!$errores)
      {
-     
+         //Hacemos la instancia de el codigo cuando estemos ya por  hacer el Insert
+      $codigo=rand(); /*--> Creo que es lo mejor para no estar instanceando multiples veces la variable*/
+
      //Preparamos  la Query
      $statement=$conexion->prepare("INSERT INTO users_data (username,password,email,server,code)VALUES (:username, :password,:email,:server,:code)");
      //lanzamos la Query con el valor obtenido del formulario ( correo y contrase;a)
