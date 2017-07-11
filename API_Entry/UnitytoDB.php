@@ -41,7 +41,7 @@ $result=$statement->fetchAll();
 foreach($result as $r)
   {
       //Debere de conocer cada columna para imprimirla por separado dandole una estructura;
-            echo $r['id'],";";
+            echo $r['id'].";",;
   }
 
 }
