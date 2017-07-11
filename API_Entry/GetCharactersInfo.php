@@ -43,11 +43,11 @@ foreach($result as $r)
   {
       //Debere de conocer cada columna para imprimirla por separado dandole una estructura;
             
-           echo $r[0],";";//Nombre
-           echo $r[1],";";//Classe
-           echo $r[2],";";//nivel
-           echo $r[3],";"; //clan
-            
+            echo $r[0],";";//Nombre
+            echo $r[1],";";//Classe
+            echo $r[2],";";//nivel
+            echo $r[3],";"; //clan
+            // print_r($r);
   }
   
 
