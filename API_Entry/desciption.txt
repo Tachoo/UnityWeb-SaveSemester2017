@@ -11,3 +11,30 @@ Deberia de pensar en hacerlo modular para cada uno de los requerimientos del jue
 (Diagramar Lapiz y papel del lado del juego como de el lado de la base de datos)
 
  
+
+
+Query para el inner join de dos tablas 
+
+SELECT characters.id,characters.nombre
+FROM characters
+SELECT characters.id,characters.nombre FROM characters JOIN users_data ON characters.user_id = users_data.id WHERE users_data.id=1 limit 1
+
+
+Query para sacar el nombre del clan dado por el id del clan alojado en el personaje
+
+SELECT clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id WHERE characters.clan_id=1
+
+
+Query para sacar todos los nombres de los clanes que tiene asociado a una cuenta
+
+SELECT clan.nombre
+FROM clan
+INNER JOIN characters ON clan.id = characters.clan_id JOIN users_data ON characters.user_id=users_data.id WHERE users_data.id=1
+
+
+
+la Query master para sacar todos los elementos de la base de datos. solo debemos de poner el id asociado 
+
+SELECT characters.nombre,class.nombre,characters.level,clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id 
+JOIN users_data ON characters.user_id=users_data.id 
+JOIN class ON class.id=characters.classe_id WHERE users_data.id=18

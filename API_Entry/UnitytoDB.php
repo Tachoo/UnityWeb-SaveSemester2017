@@ -33,16 +33,42 @@ if(isset($_POST['pass']))
 if(!empty($Usuario)&&!empty($password))
 {
 
-$statement=$conexion->prepare('SELECT id FROM users_data WHERE password=:_password AND email=:_email OR username=:_username');
+$statement=$conexion->prepare('SELECT id,email,username,premium,password,server,rango,online,validate FROM users_data WHERE email=:_email OR username=:_username AND password=:_password');
 $statement->execute( array(':_password'=>$password,':_email'=>$Usuario,':_username'=>$_Usuario) );
 $statement->setFetchMode(PDO::FETCH_ASSOC);
 $result=$statement->fetchAll();
 
-foreach($result as $r)
-  {
+//Si la Query tiene algo significa que el incio de session fue Exitoso.
+if(!empty($result))
+{
+  
+    foreach($result as $r)
+            {
       //Debere de conocer cada columna para imprimirla por separado dandole una estructura;
             echo $r['id'],";";
-  }
+            echo $r['email'],";";
+            echo $r['username'],";";
+            echo $r['premium'],";";
+            echo $r['password'],";";
+            echo $r['server'],";";
+            echo $r['rango'],";";
+            echo $r['online'],";";
+            echo $r['validate'];          
+            }
+
+$UserID=$r['id'];
+$Value=1; //Estamos conectados
+// Modificar el campo de online a verdadero  para inciar que esta conectado.
+$statement=$conexion->prepare('UPDATE users_data SET online =:_value  WHERE users_data.id =:_id ');
+$statement->execute( array(':_value'=>$Value,':_id'=>$UserID));
+//Terminamos el flujo de datos
+
+  
+}else
+{
+    echo"El nombre de usuario o la contraseña son incorrectos|Intenta iniciar secion de nuevo";
+}
+
 
 }
 else
