@@ -34,7 +34,7 @@ if(isset($_GET['id']))
 
 if(!empty($userID))
 {
-$statement=$conexion->prepare('SELECT characters.nombre,class.nombre,characters.level,clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id JOIN users_data ON characters.user_id=users_data.id JOIN class ON class.id=characters.classe_id WHERE users_data.id=:_userid');
+$statement=$conexion->prepare('SELECT characters.id,characters.nombre,class.nombre,characters.level,clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id JOIN users_data ON characters.user_id=users_data.id JOIN class ON class.id=characters.classe_id WHERE users_data.id=:_userid');
 $statement->execute( array(':_userid'=>$userID) );
 
 $result=$statement->fetchAll();
@@ -43,10 +43,12 @@ foreach($result as $r)
   {
       //Debere de conocer cada columna para imprimirla por separado dandole una estructura;
             
-            echo $r[0],";";//Nombre
-            echo $r[1],";";//Classe
-            echo $r[2],";";//nivel
-            echo $r[3],";"; //clan
+            echo $r[0],";";//id
+
+            echo $r[1],";";//Nombre
+            echo $r[2],";";//classe
+            echo $r[3],";"; //nivel
+            echo $r[4],";"; //clan
             // print_r($r);
   }
   

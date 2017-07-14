@@ -38,3 +38,13 @@ la Query master para sacar todos los elementos de la base de datos. solo debemos
 SELECT characters.nombre,class.nombre,characters.level,clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id 
 JOIN users_data ON characters.user_id=users_data.id 
 JOIN class ON class.id=characters.classe_id WHERE users_data.id=18
+
+
+
+
+
+//Query para saber quien me envio solicitud de amistad y no lo he aceptado.
+SELECT users_data.username FROM friend_list JOIN users_data ON users_data.id=friend_list.id_user_from WHERE friend_list.confirm=0
+
+//Query para saber quien ya es mi amigo.
+SELECT users_data.username FROM friend_list JOIN users_data ON users_data.id=friend_list.id_user_from WHERE friend_list.confirm=1
