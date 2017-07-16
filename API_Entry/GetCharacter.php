@@ -18,7 +18,20 @@ if(isset($_POST['id']))
       die();
     }
 }
-
+if(isset($_GET['id']))
+{
+    if(!empty($_GET['id']))
+    {
+        $userID=$_GET['id'];
+        
+    }
+    else
+    {
+      //no quiero que se haga mal uso el script 
+      die();
+    }
+}
+  $userID=$_GET['id'];
 if(!empty($userID))
 {
 $statement=$conexion->prepare('SELECT characters.id,characters.nombre,characters.level FROM characters JOIN users_data ON characters.user_id = users_data.id WHERE users_data.id=:_userid');

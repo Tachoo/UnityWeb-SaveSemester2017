@@ -40,9 +40,9 @@ $statement->execute( array(':_ClassName'=>$ClassName) );
 
 $result=$statement->fetch();
  $ClassID=$result['id'];
- echo $ClassID;
+ 
      //Buscar los elementos que queremos para las habilidades
- $statement=$conexion->prepare('SELECT Skills.nombre,Skills.descripcion,elementos.nombre,class.nombre FROM Skills INNER JOIN elementos ON Skills.elemento_id = elementos.id JOIN class ON Skills.class_id=class.id WHERE class.id=:_classid');
+ $statement=$conexion->prepare('SELECT Skills.id,Skills.nombre,Skills.descripcion,elementos.nombre FROM Skills INNER JOIN elementos ON Skills.elemento_id = elementos.id JOIN class ON Skills.class_id=class.id WHERE class.id=:_classid LIMIT 4');
  $statement->execute( array(':_classid'=>$ClassID) );
  $result=$statement->fetchAll();
 
@@ -51,10 +51,11 @@ $result=$statement->fetch();
    {
       //Debere de conocer cada columna para imprimirla por separado dandole una estructura;
             
-              echo $r[0],";";//Nombre de la Skill
-              echo $r[1],";";//Description
-              echo $r[2],";";//elemento
-              echo $r[3],";"; //classe
+              echo $r[0],";";//id
+              echo $r[1],";";//Nombre de la Skill
+              echo $r[2],";";//Description
+              echo $r[3],";"; //elemento
+            //   echo $r[4],";"; //classe
             //print_r($r);
    }
   
