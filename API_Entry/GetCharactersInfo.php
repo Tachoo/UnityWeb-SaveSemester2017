@@ -34,7 +34,7 @@ if(isset($_GET['id']))
 
 if(!empty($userID))
 {
-$statement=$conexion->prepare('SELECT characters.id,characters.nombre,class.nombre,characters.level,clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id JOIN users_data ON characters.user_id=users_data.id JOIN class ON class.id=characters.classe_id WHERE users_data.id=:_userid');
+$statement=$conexion->prepare('SELECT characters.id,characters.nombre,class.nombre,characters.level,clan.nombre FROM clan INNER JOIN characters ON clan.id = characters.clan_id JOIN users_data ON characters.user_id=users_data.id JOIN class ON class.id=characters.classe_id WHERE users_data.id=:_userid LIMIT 7');
 $statement->execute( array(':_userid'=>$userID) );
 
 $result=$statement->fetchAll();
